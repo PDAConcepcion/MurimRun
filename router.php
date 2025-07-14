@@ -10,5 +10,5 @@ if (php_sapi_name() === 'cli-server') {
 }
 
 // fallback to main entry
-require ERRORS_PATH . '/_404.error.php';
+// require ERRORS_PATH . '/_404.error.php';
 
