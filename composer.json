@@ -1,0 +1,31 @@
+{
+    "name": "pdaconcepcion/murim_run",
+    "type": "project",
+    "authors": [
+        {
+            "name": "pdaconcepcion",
+            "email": "202311772@fit.edu.ph"
+        },
+        {
+            "name": "John Doe",
+            "email": "example@email.com"
+        },
+        {
+            "name": "Jane Smith",
+            "email": "example@email.com"
+        },
+        {
+            "name": "Alice Johnson",
+            "email": "example@email.com"
+        }
+    ],
+    "scripts": {
+        "start": "php -S localhost:8000 router.php",
+        "postgresql:reset": "php utils/dbResetPostgresql.util.php",
+        "postgresql:seed": "php utils/dbSeederPostgresql.util.php",
+        "postgresql:migrate": "php utils/dbMigratePostgresql.util.php"
+    },
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}

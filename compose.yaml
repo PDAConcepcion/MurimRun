@@ -1,0 +1,54 @@
+services:
+  murim_run:
+    build:
+      context: .
+    container_name: murim_run-service
+    ports:
+      - "8000:8000"
+    develop:
+      watch:
+        - path: .
+          target: /var/www/html
+          action: sync
+        - path: ./composer.json
+          action: rebuild
+        - path: ./composer.lock
+          action: rebuild
+    volumes:
+      - ./uploads:/var/www/html/uploads
+    depends_on:
+      - mongodb
+      - postgresql
+
+  mongodb:
+    image: mongo:latest
+    container_name: murim_run-mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: heavenlymaster
+      MONGO_INITDB_ROOT_PASSWORD: jadebeauties
+      MONGO_INITDB_DATABASE: mongmurim_db
+    ports:
+      - "27777:27071"
+    volumes:
+      - murim_run-mongodb:/data/db
+
+  postgresql:
+    image: postgres:15
+    container_name: murim_run-postgresql
+    restart: always
+    environment:
+      POSTGRES_USER: demonking
+      POSTGRES_PASSWORD: divinecultivation
+      POSTGRES_DB: postmurim_db
+    ports:
+      - "5113:5433"
+    volumes:
+      - murim_run-postgresql:/var/lib/postgresql/data
+
+volumes:
+  murim_run-mongodb:
+    driver: local
+  murim_run-postgresql:
+    driver: local
+  murim_run-uploads:
+    driver: local
